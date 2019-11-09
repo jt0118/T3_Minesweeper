@@ -1,9 +1,6 @@
-// Carolyn Sanderlin
 public class HelloWorld {
-
-    public static void main (String[] args)
-    {
-        System.out.println("Hello, World :)");
+    public static void main(String[] args) {
+        System.out.println("hello");
+        System.out.println("i'm back from the dead >:(");
     }
-
 }
