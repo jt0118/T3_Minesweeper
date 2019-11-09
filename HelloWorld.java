@@ -1,7 +1,12 @@
+// Carolyn Sanderlin
+
 public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("hello");
-        System.out.println("i'm back from the dead >:(");
-        System.out.println("spooky");
+
+    public static void main (String[] args)
+    {
+        System.out.println("Hello, World :)");
+        System.out.println("Testing...testing...123....");
     }
+
+
 }
