@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.text.GapContent;
 
 public class Main {
     public static void main(String[] args){
@@ -26,7 +25,7 @@ public class Main {
         start.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                SkinSetting(centerPanel, frame);
+                difficultyMenu(centerPanel, frame);
             }
         });
 
@@ -40,7 +39,8 @@ public class Main {
         instruction.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Instruction help = new Instruction();
+                help.showMenu();
             }
         });
 
@@ -91,6 +91,48 @@ public class Main {
         northPanel.add(title);
     }
 
+    public static void difficultyMenu(JPanel panel, JFrame aFrame){
+        panel.setVisible(false);
+        JPanel difficultyPanel = new JPanel();
+        JButton easy = new JButton("Easy");
+        JButton medium = new JButton("Medium");
+        JButton back = new JButton("Back");
+        JButton hard = new JButton("Hard");
+
+        // Button Actions
+        easy.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SkinSetting(difficultyPanel, aFrame);
+                //send 0 to TA Class
+            }
+        });
+
+        medium.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SkinSetting(difficultyPanel, aFrame);
+                //send 1 to TA Class
+            }
+        });
+
+        hard.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SkinSetting(difficultyPanel, aFrame);
+                //send -1 to TA Class
+            }
+        });
+
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                difficultyPanel.setVisible(false);
+                panel.setVisible(true);
+            }
+        });
+        
+    }
     public static void SkinSetting(JPanel aPanel, JFrame aFrame){
         aPanel.setVisible(false);
         JPanel skinPanel = new JPanel();
@@ -107,11 +149,11 @@ public class Main {
         });
 
         skin2.addActionListener(new ActionListener(){
-           @Override
-           public void actionPerformed(ActionEvent e){
-               aPanel.setVisible(true);
-               skinPanel.setVisible(false);
-           }
+            @Override
+            public void actionPerformed(ActionEvent e){
+                aPanel.setVisible(true);
+                skinPanel.setVisible(false);
+            }
         });
 
         back.addActionListener(new ActionListener(){
@@ -137,3 +179,5 @@ public class Main {
     }
 
 }
+
+
