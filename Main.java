@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.text.GapContent;
 
 public class Main {
     public static void main(String[] args){
@@ -40,7 +39,8 @@ public class Main {
         instruction.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Instruction help = new Instruction();
+                help.showMenu();
             }
         });
 
@@ -91,3 +91,4 @@ public class Main {
         northPanel.add(title);
     }
 }
+
