@@ -9,6 +9,8 @@ public class Main {
         JButton start = new JButton("Start");
         JButton end = new JButton("End");
         JButton instruction = new JButton("Instruction");
+        Instruction help = new Instruction();
+        instruction.addActionListener(event -> help.showMenu());
 
         frame.add(start);
         frame.add(end);
