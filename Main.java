@@ -4,6 +4,10 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args){
+        createFrame();
+    }
+
+    public static void createFrame(){
         // Create a frame
         JFrame frame = new JFrame();
         // Create panels : this is where the components will live
@@ -133,7 +137,7 @@ public class Main {
         });
         // Difficulty Panel Settings
         difficultyPanel.setVisible(true);
-        difficultyPanel.setLayout(new GridLayout(3,1, 10, 10));
+        difficultyPanel.setLayout(new GridLayout(4,1, 10, 10));
         difficultyPanel.setPreferredSize(new Dimension(250, 200));
 
         // Add difficulty panel to frame
