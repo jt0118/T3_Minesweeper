@@ -39,9 +39,9 @@ public class BoardParser {
                     Element board = (Element) row; //this locates each column tag
                     String col1 = board.getAttribute("col1");
                     String col2 = board.getAttribute("col2");
-                    String col3 = board.getAttribute("col1");
-                    String col4 = board.getAttribute("col2");
-                    String col5 = board.getAttribute("col1");
+                    String col3 = board.getAttribute("col3");
+                    String col4 = board.getAttribute("col4");
+                    String col5 = board.getAttribute("col5");
                     System.out.println(board.getTextContent()); //this prints out the data in each column tag for every row
                 }
             }
