@@ -5,6 +5,7 @@ public class Square {
     private boolean isMine; //it is a mine
     private boolean hidden; //square is visible or not
     int number; //the number that appears if applicable
+    private int squareID;
 
     //constructor for a square
     public Square () {
@@ -50,4 +51,14 @@ public class Square {
         hidden = false;
     }
 
+    public void setSquareID(int ID){
+        squareID = ID;
+    }
+    public int getSquareID(){
+        return squareID;
+    }
+
+    public void printSquare(){
+        System.out.println("You got me, haha... " + squareID);
+    }
 }
