@@ -5,6 +5,9 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args){
         createFrame();
+        BoardParser parse = new BoardParser();
+        Board board = new Board(parse.getParsedData());
+        board.printBoard();
     }
 
     public static void createFrame(){
