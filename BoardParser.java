@@ -7,29 +7,30 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import java.io.IOException;
+import java.io.*;
+import java.util.*;
 
 // this class is used to parse through "EasyMine Data.xml"
 // due to the nature of the code it will likely need to be restructured
 // to include multiple nested xml tags/elements when we parse the final xml file
-// since the EasyMine Data.xml file only nests rows 
+// since the EasyMine Data.xml file only nests rows
 
 //add "EasyMine Data.xml" to the project
 public class BoardParser {
 
-    public static void main(String[] args) {
+    private ArrayList<String> parsedData;
 
+    public BoardParser() {
+        parsedData = new ArrayList<String>();
         Parser("EasyMine Data.xml");
-
     }
 
-    public static void Parser(String fileName)
+    public void Parser(String fileName)
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-
             Document doc = builder.parse(fileName); // File/document to parse
-
             NodeList record = doc.getElementsByTagName("record"); //record = each board.
 
             for(int i=0; i<record.getLength();i++)
@@ -42,7 +43,12 @@ public class BoardParser {
                     String col3 = board.getAttribute("col3");
                     String col4 = board.getAttribute("col4");
                     String col5 = board.getAttribute("col5");
-                    System.out.println(board.getTextContent()); //this prints out the data in each column tag for every row
+
+                    parsedData.add(col1);
+                    parsedData.add(col2);
+                    parsedData.add(col3);
+                    parsedData.add(col4);
+                    parsedData.add(col5);
                 }
             }
         } catch (ParserConfigurationException e)
@@ -53,5 +59,9 @@ public class BoardParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    ArrayList<String> getParsedData(){
+        return parsedData;
     }
 }

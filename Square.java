@@ -1,5 +1,3 @@
-package edu.uah.cs.cs321.aoife;
-
 public class Square {
 
     //properties of a square
@@ -28,7 +26,7 @@ public class Square {
         return hidden;
     }
     //return the value of the number of the square
-    public int getnumber() {
+    public int getNumber() {
         return number;
     }
     //set the number for the square
