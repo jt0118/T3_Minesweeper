@@ -32,6 +32,7 @@ public class BoardParser {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(fileName); // File/document to parse
             NodeList record = doc.getElementsByTagName("record"); //record = each board.
+            ArrayList<String> temp = new ArrayList<String>();
 
             for(int i=0; i<record.getLength();i++)
             {
@@ -44,13 +45,23 @@ public class BoardParser {
                     String col4 = board.getAttribute("col4");
                     String col5 = board.getAttribute("col5");
 
-                    parsedData.add(col1);
-                    parsedData.add(col2);
-                    parsedData.add(col3);
-                    parsedData.add(col4);
-                    parsedData.add(col5);
+                    String key = board.getTextContent();
+                    temp.add(key);
                 }
             }
+
+            String tempString = " ";
+            for(int j = 0; j < temp.size(); j ++){
+                tempString = temp.get(j);
+                for(int k = 0; k < tempString.length(); k++){
+                    char c = tempString.charAt(k);
+                    int a = Character.getNumericValue(c);
+                    if(c == 'M' || a >= 0) {
+                        parsedData.add(String.valueOf(c));
+                    }
+                }
+            }
+
         } catch (ParserConfigurationException e)
         {
             e.printStackTrace();
