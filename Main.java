@@ -5,9 +5,9 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args){
         createFrame();
-        BoardParser parse = new BoardParser();
-        Board board = new Board(parse.getParsedData());
-        board.printBoard();
+        BoardParser parser = new BoardParser();
+        Board board = new Board(parser.getParsedData());
+        board.populateBoard();
     }
 
     public static void createFrame(){
@@ -32,7 +32,7 @@ public class Main {
         start.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                difficultyMenu(centerPanel, frame);
+                difficultyMenu(centerPanel, frame, southPanel);
             }
         });
 
@@ -98,7 +98,7 @@ public class Main {
         northPanel.add(title);
     }
 
-    public static void difficultyMenu(JPanel panel, JFrame aFrame){
+    public static void difficultyMenu(JPanel panel, JFrame aFrame, JPanel sPanel){
         panel.setVisible(false);
         JPanel difficultyPanel = new JPanel();
         JButton easy = new JButton("Easy");
@@ -110,7 +110,7 @@ public class Main {
         easy.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                SkinSetting(difficultyPanel, aFrame);
+                SkinSetting(difficultyPanel, aFrame, sPanel);
                 //send 0 to TA Class
             }
         });
@@ -118,7 +118,7 @@ public class Main {
         medium.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                SkinSetting(difficultyPanel, aFrame);
+                SkinSetting(difficultyPanel, aFrame, sPanel);
                 //send 1 to TA Class
             }
         });
@@ -126,7 +126,7 @@ public class Main {
         hard.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                SkinSetting(difficultyPanel, aFrame);
+                SkinSetting(difficultyPanel, aFrame, sPanel);
                 //send -1 to TA Class
             }
         });
@@ -153,7 +153,7 @@ public class Main {
         difficultyPanel.add(back);
     }
     
-    public static void SkinSetting(JPanel aPanel, JFrame aFrame){
+    public static void SkinSetting(JPanel aPanel, JFrame aFrame, JPanel sPanel){
         aPanel.setVisible(false);
         JPanel skinPanel = new JPanel();
         JButton skin1 = new JButton("Skin 1");
@@ -163,8 +163,10 @@ public class Main {
         skin1.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                aPanel.setVisible(true);
+                //aPanel.setVisible(true);
                 skinPanel.setVisible(false);
+                BoardView board = new BoardView(aFrame, aPanel, sPanel);
+                board.buildBoard();
             }
         });
 
@@ -197,7 +199,6 @@ public class Main {
         skinPanel.add(skin2);
         skinPanel.add(back);
     }
-
 }
 
 

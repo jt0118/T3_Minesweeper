@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
 
 public class Board {
 
@@ -14,6 +14,7 @@ public class Board {
     void populateBoard(){
 
         String temp = " ";
+        int tempID = 1;
 
         for(int i = 0; i < parsedData.size(); i++){
             Square square = new Square();
@@ -22,19 +23,16 @@ public class Board {
                 square.setMine();
                 square.setNumber(-1);
             }
-            int tempNum = Integer.parseInt(temp);
-            if(tempNum >= 0){
-                square.setNumber(tempNum);
+            else {
+                int tempNum = Integer.parseInt(temp);
+                if (tempNum >= 0) {
+                    square.setNumber(tempNum);
+                }
             }
+            square.setSquareID(tempID);
             playField.add(square);
+            tempID++;
         }
 
     }
-
-    void printBoard(){
-        for(int i = 0; i < playField.size(); i++) {
-            System.out.println(playField);
-        }
-    }
-
 }
