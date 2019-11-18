@@ -1,16 +1,20 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args){
-        createFrame();
-        BoardParser parse = new BoardParser();
-        Board board = new Board(parse.getParsedData());
-        board.printBoard();
+        BoardParser parser = new BoardParser();
+        Board board = new Board(parser.getParsedData());
+        board.populateBoard();
+        ArrayList<Square> squareList = new ArrayList<Square>();
+        squareList = board.getPlayField();
+        int right = board.getnonMineSquare();
+        createFrame(squareList, right);
     }
 
-    public static void createFrame(){
+    public static void createFrame(ArrayList<Square> squareList, int right){
         // Create a frame
         JFrame frame = new JFrame();
         // Create panels : this is where the components will live
@@ -32,7 +36,7 @@ public class Main {
         start.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                difficultyMenu(centerPanel, frame);
+                difficultyMenu(centerPanel, frame, southPanel, squareList, right);
             }
         });
 
@@ -98,7 +102,7 @@ public class Main {
         northPanel.add(title);
     }
 
-    public static void difficultyMenu(JPanel panel, JFrame aFrame){
+    public static void difficultyMenu(JPanel panel, JFrame aFrame, JPanel sPanel, ArrayList<Square> squareList, int right){
         panel.setVisible(false);
         JPanel difficultyPanel = new JPanel();
         JButton easy = new JButton("Easy");
@@ -110,7 +114,7 @@ public class Main {
         easy.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                SkinSetting(difficultyPanel, aFrame);
+                SkinSetting(difficultyPanel, aFrame, sPanel, squareList, right);
                 //send 0 to TA Class
             }
         });
@@ -118,7 +122,7 @@ public class Main {
         medium.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                SkinSetting(difficultyPanel, aFrame);
+                SkinSetting(difficultyPanel, aFrame, sPanel, squareList, right);
                 //send 1 to TA Class
             }
         });
@@ -126,7 +130,7 @@ public class Main {
         hard.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                SkinSetting(difficultyPanel, aFrame);
+                SkinSetting(difficultyPanel, aFrame, sPanel, squareList, right);
                 //send -1 to TA Class
             }
         });
@@ -153,7 +157,7 @@ public class Main {
         difficultyPanel.add(back);
     }
     
-    public static void SkinSetting(JPanel aPanel, JFrame aFrame){
+    public static void SkinSetting(JPanel aPanel, JFrame aFrame, JPanel sPanel, ArrayList<Square> squareList, int right){
         aPanel.setVisible(false);
         JPanel skinPanel = new JPanel();
         JButton skin1 = new JButton("Skin 1");
@@ -163,8 +167,10 @@ public class Main {
         skin1.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                aPanel.setVisible(true);
+                //aPanel.setVisible(true);
                 skinPanel.setVisible(false);
+                BoardView board = new BoardView(aFrame, aPanel, sPanel, squareList, right);
+                board.buildBoard();
             }
         });
 
@@ -197,7 +203,6 @@ public class Main {
         skinPanel.add(skin2);
         skinPanel.add(back);
     }
-
 }
 
 
