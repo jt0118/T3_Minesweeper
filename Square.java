@@ -5,6 +5,7 @@ public class Square {
     private boolean isMine; //it is a mine
     private boolean hidden; //square is visible or not
     int number; //the number that appears if applicable
+    private int squareID;
 
     //constructor for a square
     public Square () {
@@ -12,42 +13,66 @@ public class Square {
         isMine = false;
         hidden = true;
         number = 0;
+        String strSquareID = String.valueOf(getSquareID());
     }
+
     //is this square currently flagged?
-    public boolean isFlag() {
+    public boolean getIsFlag() {
         return isFlag;
     }
+
     //does this square contain a mine?
-    public boolean isMine() {
+    public boolean getIsMine() {
         return isMine;
     }
+
     //does this square contain any value whatsoever? (blank or not)
-    public boolean isHidden() {
+    public boolean getIsHidden() {
         return hidden;
     }
+
     //return the value of the number of the square
     public int getNumber() {
         return number;
     }
+
     //set the number for the square
     public void setNumber(int newNum) {
         number = newNum;
     }
+
     //set a mine
     public void setMine() {
         isMine = true;
     }
+
     //set a flag
     public void setFlag() {
-        isFlag = true;
-    }
-    //unflag a square
-    public void unFlag() {
-        isFlag = false;
-    }
-    //unhide a square
-    public void unhide() {
-        hidden = false;
+        if(isFlag == false){
+            isFlag = true;
+        }
+        else{
+            isFlag = false;
+        }
     }
 
+    public void setHidden(){
+        if(hidden == false){
+            hidden = true;
+        }
+        else{
+            hidden = false;
+        }
+    }
+
+    public void setSquareID(int ID){
+        squareID = ID;
+    }
+    public int getSquareID(){
+        return squareID;
+    }
+
+    public void printTest(){
+        System.out.println("Click " + squareID);
+    }
 }
