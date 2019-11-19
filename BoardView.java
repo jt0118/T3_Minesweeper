@@ -15,9 +15,10 @@ public class BoardView {
     private int rightSquares;
     private ArrayList<Square> squareCollection;
     BoardControl boardControl;
+    private int selectedDifficutly;
 
     public BoardView(JFrame mainFrame, JPanel mainPanel, JPanel nPanel, JPanel ePanel, JPanel wPanel, JPanel sPanel,
-                     ArrayList<Square> squareList, int rightSquares){
+                     ArrayList<Square> squareList, int rightSquares, int selectedDifficutly){
         this.mainFrame = mainFrame;
         this.mainPanel = mainPanel;
         this.nPanel = nPanel;
@@ -27,6 +28,7 @@ public class BoardView {
         squareID = 0;
         squareCollection = squareList;
         this.rightSquares = rightSquares;
+        this.selectedDifficutly = selectedDifficutly;
     }
 
     public void buildBoard(){
@@ -34,6 +36,21 @@ public class BoardView {
         JPanel southPanel = new JPanel();
         JButton instruction = new JButton("Help");
         JButton quit = new JButton("Quit");
+
+        int gridDimension = 0;
+        int ewDimension = 0;
+        if(selectedDifficutly == 0){
+            gridDimension = 5;
+            ewDimension = 75;
+        }
+        else if(selectedDifficutly == 1){
+            gridDimension = 9;
+            ewDimension = 50;
+        }
+        else{
+            gridDimension = 16;
+            ewDimension = 25;
+        }
 
         boardControl = new BoardControl(mainFrame, mainPanel, this.nPanel, this.ePanel, this.wPanel, this.sPanel,
                 this.rightSquares, boardPanel, southPanel);
@@ -59,13 +76,22 @@ public class BoardView {
 
         // boardPanel settings
         boardPanel.setVisible(true);
-        boardPanel.setLayout(new GridLayout(5, 5,1,1));
+        boardPanel.setLayout(new GridLayout(gridDimension, gridDimension,1,1));
         boardPanel.setPreferredSize(new Dimension(250, 200));
 
         // southPanel settings
         southPanel.setVisible(true);
         southPanel.setLayout(new FlowLayout());
-        southPanel.setPreferredSize(new Dimension(500, 50));
+        if(selectedDifficutly != -1){
+            southPanel.setPreferredSize(new Dimension(500, 50));
+        }
+        else{
+            southPanel.setPreferredSize(new Dimension(500, 30));
+        }
+
+        // ePanel and wPanel settings
+        ePanel.setPreferredSize(new Dimension(ewDimension,1));
+        wPanel.setPreferredSize(new Dimension(ewDimension,1));
 
         // mainFrame components
         mainFrame.add(boardPanel, BorderLayout.CENTER);
@@ -83,6 +109,7 @@ public class BoardView {
 
     public JButton createButton(){
         JButton button = new JButton();
+
         ButtonFunctionality functionality = new ButtonFunctionality(button, boardControl);
 
         if(squareCollection.get(squareID).getIsMine()){
@@ -91,6 +118,9 @@ public class BoardView {
         else{
             functionality.regularButtonFunctionality(squareCollection, squareID);
         }
+
+        // button settings
+        button.setMargin(new Insets(2,2,2,2));
 
         squareID++;
         return button;

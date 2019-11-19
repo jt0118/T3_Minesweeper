@@ -115,12 +115,12 @@ public class BoardControl {
             }
         });
 
-        // winPanel settings
+        // losePanel settings
         losePanel.setVisible(true);
         losePanel.setLayout(new FlowLayout());
         losePanel.setPreferredSize(new Dimension(250, 200));
 
-        // buttomWinPanel settings
+        // buttomLosePanel settings
         buttomLosePanel.setVisible(true);
         buttomLosePanel.setLayout(new FlowLayout());
         buttomLosePanel.setPreferredSize(new Dimension(500, 50));
