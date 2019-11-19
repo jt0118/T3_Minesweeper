@@ -71,8 +71,4 @@ public class Square {
     public int getSquareID(){
         return squareID;
     }
-
-    public void printTest(){
-        System.out.println("Click " + squareID);
-    }
 }

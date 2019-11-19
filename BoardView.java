@@ -7,20 +7,26 @@ public class BoardView {
 
     private JFrame mainFrame;
     private JPanel mainPanel;
+    private JPanel nPanel;
+    private JPanel ePanel;
+    private JPanel wPanel;
     private JPanel sPanel;
     private int squareID;
     private int rightSquares;
     private ArrayList<Square> squareCollection;
     BoardControl boardControl;
 
-    public BoardView(JFrame mainFrame, JPanel mainPanel, JPanel sPanel, ArrayList<Square> squareList, int rightSquares){
+    public BoardView(JFrame mainFrame, JPanel mainPanel, JPanel nPanel, JPanel ePanel, JPanel wPanel, JPanel sPanel,
+                     ArrayList<Square> squareList, int rightSquares){
         this.mainFrame = mainFrame;
         this.mainPanel = mainPanel;
+        this.nPanel = nPanel;
+        this.ePanel = ePanel;
+        this.wPanel = wPanel;
         this.sPanel = sPanel;
         squareID = 0;
         squareCollection = squareList;
         this.rightSquares = rightSquares;
-        boardControl = new BoardControl(mainFrame, mainPanel, this.rightSquares);
     }
 
     public void buildBoard(){
@@ -28,6 +34,9 @@ public class BoardView {
         JPanel southPanel = new JPanel();
         JButton instruction = new JButton("Help");
         JButton quit = new JButton("Quit");
+
+        boardControl = new BoardControl(mainFrame, mainPanel, this.nPanel, this.ePanel, this.wPanel, this.sPanel,
+                this.rightSquares, boardPanel, southPanel);
 
         quit.addActionListener(new ActionListener(){
             @Override

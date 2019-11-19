@@ -36,7 +36,7 @@ public class Main {
         start.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                difficultyMenu(centerPanel, frame, southPanel, squareList, right);
+                difficultyMenu(frame, centerPanel, northPanel, eastPanel, westPanel, southPanel, squareList, right);
             }
         });
 
@@ -102,8 +102,9 @@ public class Main {
         northPanel.add(title);
     }
 
-    public static void difficultyMenu(JPanel panel, JFrame aFrame, JPanel sPanel, ArrayList<Square> squareList, int right){
-        panel.setVisible(false);
+    public static void difficultyMenu(JFrame mFrame, JPanel cPanel, JPanel nPanel, JPanel ePanel, JPanel wPanel,
+                                      JPanel sPanel, ArrayList<Square> squareList, int right){
+        cPanel.setVisible(false);
         JPanel difficultyPanel = new JPanel();
         JButton easy = new JButton("Easy");
         JButton medium = new JButton("Medium");
@@ -114,7 +115,7 @@ public class Main {
         easy.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                SkinSetting(difficultyPanel, aFrame, sPanel, squareList, right);
+                SkinSetting(mFrame, cPanel, nPanel, ePanel, wPanel, sPanel, squareList, right, difficultyPanel);
                 //send 0 to TA Class
             }
         });
@@ -122,7 +123,7 @@ public class Main {
         medium.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                SkinSetting(difficultyPanel, aFrame, sPanel, squareList, right);
+                //SkinSetting(mFrame, difficultyPanel, nPanel, ePanel, wPanel, sPanel, squareList, right);
                 //send 1 to TA Class
             }
         });
@@ -130,7 +131,7 @@ public class Main {
         hard.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                SkinSetting(difficultyPanel, aFrame, sPanel, squareList, right);
+                //SkinSetting(mFrame, difficultyPanel, nPanel, ePanel, wPanel, sPanel, squareList, right);
                 //send -1 to TA Class
             }
         });
@@ -139,7 +140,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 difficultyPanel.setVisible(false);
-                panel.setVisible(true);
+                cPanel.setVisible(true);
             }
         });
         // Difficulty Panel Settings
@@ -148,7 +149,7 @@ public class Main {
         difficultyPanel.setPreferredSize(new Dimension(250, 200));
 
         // Add difficulty panel to frame
-        aFrame.add(difficultyPanel, BorderLayout.CENTER);
+        mFrame.add(difficultyPanel, BorderLayout.CENTER);
 
         // Add skin selection to panel
         difficultyPanel.add(easy);
@@ -157,8 +158,9 @@ public class Main {
         difficultyPanel.add(back);
     }
     
-    public static void SkinSetting(JPanel aPanel, JFrame aFrame, JPanel sPanel, ArrayList<Square> squareList, int right){
-        aPanel.setVisible(false);
+    public static void SkinSetting(JFrame mFrame, JPanel cPanel, JPanel nPanel, JPanel ePanel, JPanel wPanel,
+                                   JPanel sPanel, ArrayList<Square> squareList, int right, JPanel difficulty){
+        difficulty.setVisible(false);
         JPanel skinPanel = new JPanel();
         JButton skin1 = new JButton("Skin 1");
         JButton skin2 = new JButton("Skin 2");
@@ -169,7 +171,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 //aPanel.setVisible(true);
                 skinPanel.setVisible(false);
-                BoardView board = new BoardView(aFrame, aPanel, sPanel, squareList, right);
+                BoardView board = new BoardView(mFrame, cPanel, nPanel, ePanel, wPanel, sPanel, squareList, right);
                 board.buildBoard();
             }
         });
@@ -177,15 +179,17 @@ public class Main {
         skin2.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                aPanel.setVisible(true);
+                //cPanel.setVisible(true);
                 skinPanel.setVisible(false);
+                BoardView board = new BoardView(mFrame, skinPanel, nPanel, ePanel, wPanel, sPanel, squareList, right);
+                board.buildBoard();
             }
         });
 
         back.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                aPanel.setVisible(true);
+                difficulty.setVisible(true);
                 skinPanel.setVisible(false);
             }
         });
@@ -196,7 +200,7 @@ public class Main {
         skinPanel.setPreferredSize(new Dimension(250, 200));
 
         // Add skin panel to frame
-        aFrame.add(skinPanel, BorderLayout.CENTER);
+        mFrame.add(skinPanel, BorderLayout.CENTER);
 
         // Add skin selection to panel
         skinPanel.add(skin1);
