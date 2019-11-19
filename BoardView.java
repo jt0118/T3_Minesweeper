@@ -11,7 +11,7 @@ public class BoardView {
     private int squareID;
     private int rightSquares;
     private ArrayList<Square> squareCollection;
-    BoardController boardControl;
+    BoardControl boardControl;
 
     public BoardView(JFrame mainFrame, JPanel mainPanel, JPanel sPanel, ArrayList<Square> squareList, int rightSquares){
         this.mainFrame = mainFrame;
@@ -20,7 +20,7 @@ public class BoardView {
         squareID = 0;
         squareCollection = squareList;
         this.rightSquares = rightSquares;
-        boardControl = new BoardController(mainFrame, mainPanel, this.rightSquares);
+        boardControl = new BoardControl(mainFrame, mainPanel, this.rightSquares);
     }
 
     public void buildBoard(){

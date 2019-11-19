@@ -5,11 +5,11 @@ import java.util.*;
 
 public class ButtonFunctionality extends MouseAdapter{
     private JButton squareButton;
-    private BoardController bc;
+    private BoardControl boardControl;
 
-    public ButtonFunctionality(JButton squareButton, BoardController b){
+    public ButtonFunctionality(JButton squareButton, BoardControl boardControl){
         this.squareButton = squareButton;
-        bc = b;
+        this.boardControl = boardControl;
     }
 
     public void mineButtonFunctionality(ArrayList<Square> squareCollection, int index){
@@ -28,8 +28,8 @@ public class ButtonFunctionality extends MouseAdapter{
                         }
                 }
                 if(SwingUtilities.isLeftMouseButton(e)){
-                    bc.decContinueGame();
-                    bc.check();
+                    boardControl.decContinueGame();
+                    boardControl.check();
                 }
             }
         });
@@ -57,8 +57,8 @@ public class ButtonFunctionality extends MouseAdapter{
                         if (squareCollection.get(index).getIsHidden()) {
                             squareButton.setText(updateIdentity);
                             squareCollection.get(index).setHidden();
-                            bc.decRightSquares();
-                            bc.check();
+                            boardControl.decRightSquares();
+                            boardControl.check();
                         }
                     }
                 }
